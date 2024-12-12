@@ -1,12 +1,21 @@
+const dataDiv = document.getElementById('data');
 console.log('hello world');
 // Define the GraphQL query
-const query = `
+const queryTeamName = `
 query($number: Int!){
   teamByNumber(number:$number) {
     schoolName
   }
 }
 `;
+
+const queryMatchRecord = `
+query($number: Int!){
+  teamByNumber(number:$number) {
+    tepRecords
+  }
+}
+`
 // Define variables for the query
 const variables = {
   number: 23381 // Replace with the desired team number
@@ -18,7 +27,7 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-async function fetchData() {
+async function fetchData(query) {
   try {
     // Make the request to the GraphQL API
     const response = await fetch(endpoint, {
@@ -36,6 +45,7 @@ async function fetchData() {
     } else {
       // Log the data
       console.log('Data:', result.data);
+      dataDiv.innerText = result.data.teamByNumber.schoolName;
     }
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -43,4 +53,4 @@ async function fetchData() {
 }
 
 // Call the function
-fetchData();
+fetchData(queryTeamName);

@@ -1,7 +1,7 @@
 # FTCELO
 App that ranks FTC (First Tech Challenge) Teams with based on an ELO ranking system, pulling data from FTCScout
 # FTCScout GraphQL structure
-```json
+```javascript
 type Query {
   teamByNumber(number: Int!): Team
   teamByName(name: String!): Team
